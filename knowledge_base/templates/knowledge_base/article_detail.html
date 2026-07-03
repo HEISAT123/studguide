@@ -1,0 +1,21 @@
+{% extends 'knowledge_base/base.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <div class="text-left max-w-3xl mx-auto">
+        <a href="{% url 'knowledge_base:category_detail' article.category.slug %}" class="text-blue-500 hover:underline text-sm mb-6 inline-block">&larr; В категорию "{{ article.category.name }}"</a>
+        
+        <h1 class="text-4xl font-bold mb-4 text-gray-900">{{ article.title }}</h1>
+        
+        <div class="flex items-center text-sm text-gray-500 mb-8 pb-4 border-b">
+            <span class="mr-4">Автор: {{ article.author.username|default:"Редакция" }}</span>
+            <span>Обновлено: {{ article.updated_at|date:"d M Y, H:i" }}</span>
+        </div>
+
+        <!-- Контент статьи. Фильтр safe позволяет выводить HTML-теги (жирный текст, списки) -->
+        <article class="prose prose-blue max-w-none text-gray-800 leading-relaxed">
+            {{ article.content|safe }}
+        </article>
+    </div>
+{% endblock %}
