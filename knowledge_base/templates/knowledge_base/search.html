@@ -1,0 +1,49 @@
+{% extends 'knowledge_base/base.html' %}
+{% block title %}Поиск: {{ query }} - StudGuide{% endblock %}
+{% block content %}
+    <div class="text-left max-w-3xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6 text-urfublue">Результаты поиска</h1>
+
+        {% if error_message %}
+            <!-- Ошибка: меньше 2 символов -->
+            <div class="bg-red-50 border border-red-200 text-red-600 px-6 py-4 rounded-lg mb-6">
+                <p class="font-medium">{{ error_message }}</p>
+                <p class="text-sm mt-1">Пожалуйста, уточните ваш запрос.</p>
+            </div>
+           <nav class="flex items-center text-[15px] font-medium mb-8 text-gray-500 flex-wrap gap-y-2">
+            <a href="{% url 'knowledge_base:home' %}" class="hover:text-gray-800 transition-colors">Главная</a>
+            
+            <span class="mx-2 text-pink-500 text-lg font-bold">&rarr;</span>
+            
+            <span class="text-black font-bold">Результаты поиска</span>
+        </nav>
+
+        {% else %}
+            <!-- Результаты поиска -->
+            <p class="text-gray-600 mb-6 border-b pb-4">
+                По запросу <strong>«{{ query }}»</strong> 
+                {% if articles %}найдено совпадений: {{ articles|length }}{% else %}ничего не найдено.{% endif %}
+            </p>
+
+            {% if articles %}
+                <div class="flex flex-col gap-6">
+                    {% for article in articles %}
+                        <a href="{% url 'knowledge_base:article_detail' article.slug %}" class="block border rounded-lg p-6 hover:shadow-lg transition bg-white">
+                            <h2 class="text-xl font-medium mb-2 text-urfublue">{{ article.title }}</h2>
+                            <p class="text-sm text-gray-400 mb-3">Категория: {{ article.category.name }}</p>
+                            <p class="text-gray-700 text-sm">{{ article.content|striptags|truncatechars:100 }}</p>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="bg-gray-50 border border-gray-200 px-6 py-8 rounded-lg text-center mt-8">
+                    <p class="text-lg text-gray-700 font-medium mb-2">По вашему запросу ничего не найдено</p>
+                    <p class="text-gray-500 text-sm mb-6">Попробуйте использовать другие ключевые слова или проверьте орфографию.</p>
+                    <a href="{% url 'knowledge_base:home' %}" class="bg-urfublue text-white px-6 py-2 rounded-full font-medium hover:bg-blue-800 transition">
+                        На главную
+                    </a>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -3,9 +3,19 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
-    <div class="text-left max-w-3xl mx-auto">
-        <a href="{% url 'knowledge_base:category_detail' article.category.slug %}" class="text-blue-500 hover:underline text-sm mb-6 inline-block">&larr; В категорию "{{ article.category.name }}"</a>
-        
+    <div class="text-left mx-auto">
+        <nav class="flex items-center text-[15px] font-medium mb-8 text-gray-500 flex-wrap gap-y-2">
+            <a href="{% url 'knowledge_base:home' %}" class="hover:text-gray-800 transition-colors">Главная</a>
+            
+            <span class="mx-2 text-pink-500 text-lg font-bold">&rarr;</span>
+            
+            <a href="{% url 'knowledge_base:category_detail' article.category.slug %}" class="hover:text-gray-800 transition-colors">{{ article.category.name }}</a>
+            
+            <span class="mx-2 text-orange-500 text-lg font-bold">&rarr;</span>
+            
+            <span class="text-black font-bold">{{ article.title }}</span>
+        </nav>
+
         <h1 class="text-4xl font-bold mb-4 text-gray-900">{{ article.title }}</h1>
         
         <div class="flex items-center text-sm text-gray-500 mb-8 pb-4 border-b">
@@ -14,7 +24,7 @@
         </div>
 
         <!-- Контент статьи. Фильтр safe позволяет выводить HTML-теги (жирный текст, списки) -->
-        <article class="prose prose-blue max-w-none text-gray-800 leading-relaxed">
+        <article class="prose prose-blue max-w-none text-gray-800 leading-relaxed break-words">
             {{ article.content|safe }}
         </article>
     </div>

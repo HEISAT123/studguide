@@ -4,7 +4,13 @@
 
 {% block content %}
     <div class="text-left">
-        <a href="{% url 'knowledge_base:home' %}" class="text-blue-500 hover:underline text-sm mb-4 inline-block">&larr; Назад на главную</a>
+        <nav class="flex items-center text-[15px] font-medium mb-8 text-gray-500 flex-wrap gap-y-2">
+            <a href="{% url 'knowledge_base:home' %}" class="hover:text-gray-800 transition-colors">Главная</a>
+            
+            <span class="mx-2 text-pink-500 text-lg font-bold">&rarr;</span>
+            
+            <span class="text-black font-bold">{{ category.name }}</span>
+        </nav>
         
         <h1 class="text-3xl font-bold mb-6 text-urfublue">{{ category.name }}</h1>
         
@@ -18,5 +24,43 @@
                 <p class="text-gray-500 bg-gray-50 p-6 rounded-lg text-center">В этой категории пока нет опубликованных статей.</p>
             {% endfor %}
         </div>
+
+       {% if articles.has_other_pages %}
+        <div class="flex flex-wrap justify-center items-center mt-10 gap-2 text-sm md:text-base">
+            
+            <!-- Кнопка Назад -->
+            {% if articles.has_previous %}
+                <a href="?page={{ articles.previous_page_number }}" class="px-3 py-2 border rounded-lg text-gray-600 hover:bg-gray-50 transition">&laquo; Назад</a>
+            {% else %}
+                <span class="px-3 py-2 border rounded-lg text-gray-300 bg-gray-50 cursor-not-allowed">&laquo; Назад</span>
+            {% endif %}
+            
+            <!-- Вывод номеров страниц -->
+            {% for i in page_range %}
+                
+                {% if i == articles.paginator.ELLIPSIS %}
+                    <!-- Рисуем многоточие -->
+                    <span class="px-2 py-2 text-gray-400 font-bold tracking-widest">...</span>
+                
+                {% elif articles.number == i %}
+                    <!-- Текущая (активная) страница -->
+                    <span class="px-4 py-2 border-2 border-orange-400 bg-orange-50 text-orange-600 font-bold rounded-lg">{{ i }}</span>
+                
+                {% else %}
+                    <!-- Остальные кликабельные страницы -->
+                    <a href="?page={{ i }}" class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50 transition hover:border-gray-300">{{ i }}</a>
+                {% endif %}
+                
+            {% endfor %}
+            
+            <!-- Кнопка Вперед -->
+            {% if articles.has_next %}
+                <a href="?page={{ articles.next_page_number }}" class="px-3 py-2 border rounded-lg text-gray-600 hover:bg-gray-50 transition">Вперед &raquo;</a>
+            {% else %}
+                <span class="px-3 py-2 border rounded-lg text-gray-300 bg-gray-50 cursor-not-allowed">Вперед &raquo;</span>
+            {% endif %}
+
+        </div>
+        {% endif %}
     </div>
 {% endblock %}
