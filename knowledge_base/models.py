@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name="Название")
@@ -23,7 +24,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     slug = models.SlugField(max_length=200, unique=True, verbose_name="Slug")
     category = models.ForeignKey(Category, on_delete=models.RESTRICT, verbose_name="Категория")
-    content = models.TextField(verbose_name="Текст")
+    content = HTMLField(verbose_name="Текст")
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='draft', verbose_name="Статус")
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="Автор")
     

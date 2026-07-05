@@ -1,0 +1,63 @@
+.login-page {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+}
+.login-card-body {
+    border-radius: 16px !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+    padding: 3rem 2rem !important;
+}
+
+.login-logo a {
+    color: #0053A0 !important;
+    font-weight: 900 !important;
+    font-size: 2.5rem !important;
+}
+
+.login-logo a b {
+    color: #f97316 !important;
+}
+
+.brand-text {
+    color: #f97316 !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px;
+}
+
+.d-block {
+    color: #f97316 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+}
+
+.nav-pills .nav-link.active, 
+.nav-pills .show > .nav-link {
+    background-color: #0053A0 !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 83, 160, 0.3) !important;
+}
+
+.nav-pills .nav-link {
+    border-radius: 8px !important;
+}
+
+.btn-primary {
+    background-color: #0053A0 !important;
+    border-color: #0053A0 !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    box-shadow: 0 2px 4px rgba(0, 83, 160, 0.2) !important;
+}
+
+.btn-primary:hover {
+    background-color: #003d7a !important;
+    border-color: #003d7a !important;
+}
+
+.btn-danger {
+    border-radius: 6px !important;
+}
+
+.content-wrapper {
+    background-color: #f8fafc !important;
+}

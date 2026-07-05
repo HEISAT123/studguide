@@ -27,7 +27,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = []
+raw_hosts = os.getenv('ALLOWED_HOSTS')
+
+ALLOWED_HOSTS = [host.strip() for host in raw_hosts.split(',') if host.strip()]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.loca.lt',
+]
 
 
 # Application definition
@@ -40,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tinymce',
     'knowledge_base',
 ]
 
@@ -111,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Yekaterinburg'
 
 USE_I18N = True
 
@@ -129,3 +136,38 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Настройки внешнего вида админки (Jazzmin)
+JAZZMIN_SETTINGS = {
+    "site_title": "StudGuide",
+    "site_header": "StudGuide",
+    "site_brand": "StudGuide",
+    "welcome_sign": "Панель управления StudGuide",
+    "copyright": "УрФУ",
+    
+    "topmenu_links": [
+        {"name": "На сайт", "url": "/", "new_window": True},
+    ],
+    
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "knowledge_base.Category": "fas fa-list",
+        "knowledge_base.Article": "fas fa-file-alt",
+    },
+    
+    "hide_models": ["auth.Group"],
+    
+    # ПОДКЛЮЧАЕМ НАШ КАСТОМНЫЙ ДИЗАЙН
+    "custom_css": "knowledge_base/css/admin.css", 
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "litera",
+    "navbar": "navbar-white navbar-light",
+    "sidebar": "sidebar-light-primary",
+    "brand_colour": "navbar-white",
+    "sidebar_nav_flat_style": True,
+}
