@@ -28,16 +28,6 @@ pip install -r requirements.txt
 
 Переименуйте `.env.example` на `.env` и вставьте настройки подключения к вашей локальной базе данных:
 
-```env
-SECRET_KEY=django-insecure-my-super-secret-key-123
-DEBUG=True
-DB_NAME=studguide
-DB_USER=postgres
-DB_PASSWORD=твой_пароль_от_бд_postgres
-DB_HOST=127.0.0.1
-DB_PORT=5432
-ALLOWED_HOSTS=*
-```
 
 ### 4. Создание таблиц и запуск
 
@@ -66,6 +56,4 @@ python manage.py runserver
    - Выберите статус `Опубликовано`, чтобы статья появилась на сайте. По умолчанию новые статьи сохраняются как `Черновик`.
    - Нажмите «Сохранить».
 
-```Markdown
-```
 
