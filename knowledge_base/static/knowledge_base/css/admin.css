@@ -61,3 +61,11 @@
 .content-wrapper {
     background-color: #f8fafc !important;
 }
+
+.timeline > div > i {
+    background-color: transparent !important;
+    color: #64748b !important;
+    box-shadow: none !important;
+    border: none !important;
+    font-size: 18px !important;
+}

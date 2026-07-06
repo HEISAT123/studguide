@@ -33,6 +33,8 @@ ALLOWED_HOSTS = [host.strip() for host in raw_hosts.split(',') if host.strip()]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.loca.lt',
+    'http://localhost',
+    'http://127.0.0.1',
 ]
 
 
@@ -118,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Asia/Yekaterinburg'
 
@@ -130,7 +132,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -158,9 +164,6 @@ JAZZMIN_SETTINGS = {
         "knowledge_base.Article": "fas fa-file-alt",
     },
     
-    "hide_models": ["auth.Group"],
-    
-    # ПОДКЛЮЧАЕМ НАШ КАСТОМНЫЙ ДИЗАЙН
     "custom_css": "knowledge_base/css/admin.css", 
 }
 
@@ -170,4 +173,33 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar": "sidebar-light-primary",
     "brand_colour": "navbar-white",
     "sidebar_nav_flat_style": True,
+}
+
+TINYMCE_DEFAULT_CONFIG = {
+    "promotion": False,
+    "height": 700,
+    "menubar": "file edit view insert format tools table help",
+    "plugins": "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount emoticons",
+
+    "content_style": "@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap'); body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937; padding: 1rem; } p { margin-top: 0; margin-bottom: 1rem; }",
+
+    "font_family_formats": (
+        "Inter=Inter, sans-serif; "
+        "Roboto=Roboto, sans-serif; "
+        "Golos Text='Golos Text', sans-serif; "
+        "Montserrat=Montserrat, sans-serif; "
+        "Arial=arial, helvetica, sans-serif; "
+        "Times New Roman=times new roman, times, serif;"
+    ),
+    
+    "toolbar": (
+        "undo redo | fontfamily fontsize | "
+        "bold italic underline strikethrough | forecolor backcolor | "
+        "alignleft aligncenter alignright alignjustify | "
+        "bullist numlist outdent indent | "
+        "table media image emoticons | "
+        "removeformat | fullscreen preview code"
+    ),
+    "custom_undo_redo_levels": 50,
+    "language": "ru",
 }

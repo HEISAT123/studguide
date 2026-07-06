@@ -4,5 +4,6 @@ Pillow>=10.0.0
 django-htmx>=1.17.2
 django-tailwind>=3.8.0
 python-dotenv>=1.0.0
+gunicorn>=23.0.0
 django-jazzmin>=3.0.0
 django-tinymce>=3.6.1

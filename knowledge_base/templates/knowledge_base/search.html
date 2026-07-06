@@ -31,7 +31,7 @@
                         <a href="{% url 'knowledge_base:article_detail' article.slug %}" class="block border rounded-lg p-6 hover:shadow-lg transition bg-white">
                             <h2 class="text-xl font-medium mb-2 text-urfublue">{{ article.title }}</h2>
                             <p class="text-sm text-gray-400 mb-3">Категория: {{ article.category.name }}</p>
-                            <p class="text-gray-700 text-sm">{{ article.content|striptags|truncatechars:100 }}</p>
+                            <p class="text-gray-700 text-sm leading-relaxed">{{ article.snippet|safe }}</p>
                         </a>
                     {% endfor %}
                 </div>
