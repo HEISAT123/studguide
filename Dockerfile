@@ -14,10 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Создаем папку для статики заранее
 RUN mkdir -p staticfiles
 
-# Даем права на выполнение скрипта
 RUN chmod +x entrypoint.sh
 
 # Запускаем через entrypoint

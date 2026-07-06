@@ -151,6 +151,8 @@ JAZZMIN_SETTINGS = {
     "site_brand": "StudGuide",
     "welcome_sign": "Панель управления StudGuide",
     "copyright": "УрФУ",
+    "site_icon": "img/favicon.png", 
+    "site_logo": "img/favicon.png",
     
     "topmenu_links": [
         {"name": "На сайт", "url": "/", "new_window": True},
