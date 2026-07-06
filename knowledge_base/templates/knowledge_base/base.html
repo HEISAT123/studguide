@@ -56,9 +56,8 @@
                 searchForm.addEventListener('submit', function(e) {
                     const query = searchInput.value.trim();
 
-                    // Если ввели ровно 1 символ
-                    if (query.length > 0 && query.length < 2) {
-                        e.preventDefault(); // ОТМЕНЯЕМ ПЕРЕХОД НА ДРУГУЮ СТРАНИЦУ!
+                    if (query.length < 2) {
+                        e.preventDefault();
                         
                         // Показываем текст ошибки и красим рамку в красный
                         searchError.classList.remove('hidden');

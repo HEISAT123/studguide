@@ -35,7 +35,7 @@ def search(request):
     articles = []
     error_message = None
 
-    if query:
+    if 'q' in request.GET:
         if len(query) < 2:
             error_message = "Введите не менее 2 символов"
         else:
