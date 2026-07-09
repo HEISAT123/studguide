@@ -174,6 +174,7 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_flat_style": True,
 }
 
+# Настройки редактора текста TinyMCE
 TINYMCE_DEFAULT_CONFIG = {
     "promotion": False,
     "height": 700,

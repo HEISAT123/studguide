@@ -1,7 +1,7 @@
 # StudGuide УрФУ — База знаний для первокурсников (MVP)
 
 Проект представляет собой единый веб-ресурс (базу знаний) для студентов первого курса. 
-**Стек:** Python, Django, PostgreSQL, Tailwind CSS + HTMX, Docker.
+**Стек:** Python, Django, PostgreSQL, Tailwind CSS + HTMX, Docker, Nginx.
 
 ---
 

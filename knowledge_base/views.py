@@ -53,28 +53,14 @@ def search(request):
             # Умная обработка текста (Сниппеты)
             query_lower = query.lower()
             for article in articles_qs:
-                
-                # 1. ПОДСВЕЧИВАЕМ ЗАГОЛОВОК
-                article.highlighted_title = mark_safe(re.sub(
-                    f"({re.escape(query)})", 
-                    r'<mark class="bg-yellow-200">\1</mark>', 
-                    article.title, 
-                    flags=re.IGNORECASE
-                ))
-                
-                # 2. ПОДСВЕЧИВАЕМ КАТЕГОРИЮ
-                article.highlighted_category = mark_safe(re.sub(
-                    f"({re.escape(query)})", 
-                    r'<mark class="bg-yellow-200">\1</mark>', 
-                    article.category.name, 
-                    flags=re.IGNORECASE
-                ))
-
-                # 3. ПОДСВЕЧИВАЕМ ТЕКСТ (Сниппет)
+                # 1. Очищаем текст от HTML и спецсимволов (&nbsp;)
                 plain_text = strip_tags(article.content).replace('&nbsp;', ' ')
+                
+                # 2. Ищем, на какой позиции находится искомое слово
                 idx = plain_text.lower().find(query_lower)
                 
                 if idx != -1:
+                    # Если нашли в тексте: берем 40 символов ДО и 60 ПОСЛЕ слова
                     start = max(0, idx - 40)
                     end = min(len(plain_text), idx + len(query) + 40)
                     
@@ -82,6 +68,7 @@ def search(request):
                     if start > 0: snippet = "..." + snippet
                     if end < len(plain_text): snippet = snippet + "..."
                         
+                    # 3. Подсвечиваем найденное слово желтым маркером (Tailwind: bg-yellow-200)
                     highlighted = re.sub(
                         f"({re.escape(query)})", 
                         r'<mark class="bg-yellow-200">\1</mark>', 
@@ -90,6 +77,7 @@ def search(request):
                     )
                     article.snippet = mark_safe(highlighted)
                 else:
+                    # Если совпадение только в заголовке, берем просто начало текста
                     snippet = plain_text[:100] + ("..." if len(plain_text) > 100 else "")
                     article.snippet = snippet
                     
