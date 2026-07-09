@@ -32,7 +32,7 @@ docker compose up -d --build
 **3. Создание администратора:**
 Миграции и сборка статики выполнятся автоматически. Вам остается только создать аккаунт редактора:
 ```bash
-docker-compose exec web python manage.py createsuperuser
+docker compose exec web python manage.py createsuperuser
 ```
 
 Проект доступен по адресу: **http://localhost**
