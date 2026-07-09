@@ -10,13 +10,9 @@
                 <p class="font-medium">{{ error_message }}</p>
                 <p class="text-sm mt-1">Пожалуйста, уточните ваш запрос.</p>
             </div>
-           <nav class="flex items-center text-[15px] font-medium mb-8 text-gray-500 flex-wrap gap-y-2">
-            <a href="{% url 'knowledge_base:home' %}" class="hover:text-gray-800 transition-colors">Главная</a>
-            
-            <span class="mx-2 text-pink-500 text-lg font-bold">&rarr;</span>
-            
-            <span class="text-black font-bold">Результаты поиска</span>
-        </nav>
+            <a href="{% url 'knowledge_base:home' %}" class="bg-urfublue text-white px-6 py-2 rounded-full font-medium hover:bg-blue-800 transition">
+                На главную
+            </a>
 
         {% else %}
             <!-- Результаты поиска -->
@@ -24,7 +20,7 @@
                 По запросу <strong>«{{ query }}»</strong> 
                 {% if articles %}найдено совпадений: {{ articles|length }}{% else %}ничего не найдено.{% endif %}
             </p>
-
+            <!-- Если найдено -->
             {% if articles %}
                 <div class="flex flex-col gap-6">
                     {% for article in articles %}
@@ -35,6 +31,7 @@
                         </a>
                     {% endfor %}
                 </div>
+            <!-- Если не найдено -->
             {% else %}
                 <div class="bg-gray-50 border border-gray-200 px-6 py-8 rounded-lg text-center mt-8">
                     <p class="text-lg text-gray-700 font-medium mb-2">По вашему запросу ничего не найдено</p>

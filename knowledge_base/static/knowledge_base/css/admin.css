@@ -17,6 +17,18 @@
     color: #f97316 !important;
 }
 
+.login-logo img {
+    max-height: 200px !important;
+    width: auto !important;
+    margin-bottom: 10px !important;
+}
+
+.login-logo a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .brand-text {
     color: #f97316 !important;
     font-weight: 800 !important;
